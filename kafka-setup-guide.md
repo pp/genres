@@ -37,8 +37,12 @@ docker run -d \
 
 In this command:
 - `--network kafka-net` attaches the container to the kafka-net network.
-- `-e KAFKA_ZOOKEEPER_CONNECT` sets the Zookeeper connection string.
+- `-p 9092:9092`, `-p 9093:9093` exposes ports 9092 and 9093 to the host.
+- `-e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181` tells Kafka the address of its Zookeeper.
+- `-e KAFKA_LISTENER_SECURITY_PROTOCOL_MAP`: sets security protocols for listeners.
+- `-e KAFKA_LISTENERS` defines Kafka's internal and external listeners.
 - `-e KAFKA_ADVERTISED_LISTENERS` defines how Kafka broker announces itself to the world.
+- `-e KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT_INTERNAL` sets the listener for inter-broker communication.
 - `-e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1` is necessary for a single Kafka broker setup.
 
 ## 2. Create a Kafka topic
@@ -68,5 +72,6 @@ docker run -d \
 
 In this command:
 - `--network kafka-net` ensures that the Kafka UI is in the same network as Kafka.
+- `-p 8080:8080` exposes ports 9092 and 9093 to the host.
 - `-e KAFKA_CLUSTERS_0_NAME` sets a name for your Kafka cluster in the UI.
 - `-e KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS` specifies the Kafka broker URL within the Docker network.
