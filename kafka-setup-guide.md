@@ -1,11 +1,9 @@
 # Local Kafka and Kafka UI Setup with Docker
 
-In total you will create three Docker containers:
+In total, you will create three Docker containers:
 - `zookeeper`
 - `kafka`: runs Kafka with a topic called `quickstart`
 - `kafka-ui`: runs [Kafka UI](https://github.com/provectus/kafka-ui)
-
-At the end of this guide, you will be able to see your `quickstart` topic in Kafka UI at [http://localhost:8080/ui/clusters/local/all-topics](http://localhost:8080/ui/clusters/local/all-topics)
 
 ## 1. Create Docker containers for Kafka
 
@@ -39,7 +37,7 @@ In this command:
 - `--network kafka-net` attaches the container to the kafka-net network.
 - `-p 9092:9092`, `-p 9093:9093` exposes ports 9092 and 9093 to the host.
 - `-e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181` tells Kafka the address of its Zookeeper.
-- `-e KAFKA_LISTENER_SECURITY_PROTOCOL_MAP`: sets security protocols for listeners.
+- `-e KAFKA_LISTENER_SECURITY_PROTOCOL_MAP` sets security protocols for listeners.
 - `-e KAFKA_LISTENERS` defines Kafka's internal and external listeners.
 - `-e KAFKA_ADVERTISED_LISTENERS` defines how Kafka broker announces itself to the world.
 - `-e KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT_INTERNAL` sets the listener for inter-broker communication.
@@ -75,3 +73,9 @@ In this command:
 - `-p 8080:8080` exposes ports 9092 and 9093 to the host.
 - `-e KAFKA_CLUSTERS_0_NAME` sets a name for your Kafka cluster in the UI.
 - `-e KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS` specifies the Kafka broker URL within the Docker network.
+
+## Accessing Kafka UI & Kafka
+
+- Now, Kafka UI should be running and accessible at [http://localhost:8080](http://localhost:8080)
+- Kafka UI and other internal Docker services should connect to `kafka:9093`.
+- External connections (like those from your local machine) should use `localhost:9092`.
