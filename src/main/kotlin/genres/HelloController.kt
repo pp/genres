@@ -11,7 +11,7 @@ import io.micronaut.scheduling.annotation.ExecuteOn
 class HelloController(
     private val genreClient: GenreClient,
     private val genreProducer: GenreProducer
-) { // Inject BeanContext
+) {
 
     @Get
     @Produces(MediaType.TEXT_PLAIN)

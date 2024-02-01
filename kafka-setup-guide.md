@@ -77,5 +77,5 @@ In this command:
 ## Accessing Kafka UI & Kafka
 
 - Now, Kafka UI should be running and accessible at [http://localhost:8080](http://localhost:8080)
-- Kafka UI and other internal Docker services should connect to `kafka:9093`.
-- External connections (like those from your local machine) should use `localhost:9092`.
+- Kafka UI and other internal Docker services should connect to `kafka:9093`
+- External connections (like those from your local machine) should use `localhost:9092`
